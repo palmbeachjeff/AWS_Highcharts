@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Grand Canyon University</title>
+  <script>
+    $(function () {
+      $('#container').highcharts({
+          chart: {
+          type: 'area'
+        },
+        title: {
+          text: 'Tech vs Marketing vs General & Admin'
+        },
+        xAxis: {
+          allowDecimals: false,
+          labels: {
+            formatter: function () {
+              return this.value; // clean, unformatted number for year
+            }
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Budget (in millions)'
+          },
+          labels: {
+            formatter: function () {
+              return this.value / 1000 + 'MM';
+            }
+          }
+        },
+        tooltip: {
+          pointFormat: '{series.name} has spent $<b>{point.y:,.0f},000</b><br/>in Quarter {point.x}'
+        },
+        plotOptions: {
+          area: {
+            pointStart: 1,
+            marker: {
+              enabled: false,
+              symbol: 'circle',
+              radius: 2,
+              states: {
+                hover: {
+                  enabled: true
+                }
+              }
+            }
+          }
+        },
+        series: [{
+          name: 'Technology and Academic Services',
+          data: [
+            10381, 10220, 10494, 10739, 10697, 10678, 11101, 11098
+          ]
+        }, {
+          name: 'Marketing',
+          data: [
+            27309, 27426, 28130, 26227, 28527, 30095, 31546, 27252
+          ]
+        }, {
+          name: 'General and Administrative',
+          data: [
+            7033, 5806, 8343, 5975, 7419, 5762, 10092, 6695
+          ]
+        }]
+      })
+    })
+  </script>
+</head>
+<body>
+  <h1>Financial Trends for Grand Canyon University</h1>
+  <div id="container" width="500" height="500"></div>
+</body>
+</html>
